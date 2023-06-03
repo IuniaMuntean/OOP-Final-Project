@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <cstring>
+#include <exception>
 
 class Song
 {
@@ -21,5 +22,20 @@ public:
 	std::string getUrl() const;
 	std::vector<std::string> getLyrics() const;
 
+	bool operator==(const Song& other);
+
+	//friend std::ostream& operator<<(std::ostream& os, Song s);
+
 };
 
+class SongException : public std::exception
+{
+public:
+	SongException(std::string msg) 
+		: std::exception(msg.c_str()) {}
+
+	/*friend std::ostream& operator<<(std::ostream& os, SongException e) {
+		os << e.what();
+		return os;
+	}*/
+};
